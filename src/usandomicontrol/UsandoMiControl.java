@@ -26,6 +26,12 @@ public class UsandoMiControl extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
+        // Damos ancho al escenario
+        stage.setWidth(320);
+        // Damos alto al escenario
+        stage.setHeight(880);
+        
+        // VBox que será el nodo raiz de la escena
         VBox root = new VBox();
         root.setAlignment(Pos.CENTER);
         root.setSpacing(10);
@@ -34,29 +40,29 @@ public class UsandoMiControl extends Application {
         // Al estar definido como un AnchorPane, no se mueve al redimensionar, el otro componente si se posiciona siempre en el centro
         Parent miControl = FXMLLoader.load(getClass().getResource("UsandoMiControlView.fxml"));
         
+        // Control personalizado CampoTextoBoton
         CampoTextoBoton btnText = new CampoTextoBoton();
         btnText.setText("Hello!");
         btnText.setAlignment(Pos.CENTER);
         
+        // Control personalizado CampoTextoNumerico
         CampoTextoNumerico campoNumerico = new CampoTextoNumerico();
+        // Le quitamos 20 pixeles de ancho para que no quede pegado al borde
+        campoNumerico.setMaxWidth(stage.getWidth() - 20);
         
-        root.getChildren().addAll(new Separator(), new Label("MiControl"), miControl, 
-                                  new Separator(), new Label("CampoTextoBoton"), btnText,
-                                  new Separator(), new Label("CampoTextoNumerico"), campoNumerico);
+        // Añadimos los componentes personalizados al VBox (nodo raiz)
+        root.getChildren().addAll(new Separator(), new Label("4.3. MiControl"), miControl, 
+                                  new Separator(), new Label("4.5.1 CampoTextoBoton"), btnText,
+                                  new Separator(), new Label("4.5.6 CampoTextoNumerico"), campoNumerico);
+
         
+        // Establecemos la escena
         stage.setScene(new Scene(root));
-        stage.setTitle("Control Personalizado");
-        stage.setWidth(320);
-        stage.setHeight(880);
-        stage.show();
-    /*
-        Parent root = FXMLLoader.load(getClass().getResource("UsandoMiControlView.fxml"));
+        // Damos titulo a la ventana
+        stage.setTitle("Controles Personalizado");
         
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
+        // Mostramos el escenario
         stage.show();
-    */
     }
 
     /**
